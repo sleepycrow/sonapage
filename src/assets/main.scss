@@ -1,0 +1,30 @@
+:root {
+	--page-width: 800px;
+
+	--color-bg: #FFF;
+	--color-text: #000;
+	--color-text-light: #666;
+}
+
+body {
+	width: 100%;
+	max-width: var(--page-width);
+	margin: 0 auto;
+	padding: 0 1rem;
+	font-family: Arial, helvetica, sans-serif;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+img {
+	max-width: 100%;
+}

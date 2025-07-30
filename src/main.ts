@@ -13,6 +13,8 @@
  * this is sonapage, a simple fursona schema viewer.
  */
 
+import '@/assets/main.scss';
+
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';

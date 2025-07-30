@@ -25,6 +25,7 @@ export default defineConfig({
     },
   },
 	define: {
+		__APP_INSTANCE_NAME__: JSON.stringify("sona.page"),
 		__APP_NAME__: JSON.stringify(process.env.npm_package_name),
 		__APP_REPO_URL__: JSON.stringify('https://github.com/sleepycrow/sonapage'),
 		__APP_VERSION__: JSON.stringify(process.env.npm_package_version),
