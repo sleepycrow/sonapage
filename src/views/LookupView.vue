@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SonaCard from '@/components/SonaCard/SonaCard.vue';
+import SonaCard from '@/components/SonaCard.vue';
 import type { FursonaSchema } from '@/interfaces/FursonaSchema';
 import { extractHost, loadFursonaInfo } from '@/utils/networkUtils';
 import { computed, ref, watch } from 'vue';
@@ -47,6 +47,7 @@ watch(() => route.params.host, (newHost) => {
 		/>
 
 		<details>
+			<summary>Raw data</summary>
 			<pre v-html="JSON.stringify(fursonaInfo, null, 2)"></pre>
 		</details>
 	</template>

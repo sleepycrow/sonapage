@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Sona } from '@/interfaces/FursonaSchema';
+import SonaCardColorChip from './SonaCardColorChip.vue';
 
 const props = defineProps<{
 	sona: Sona;
@@ -13,6 +14,9 @@ const metaItems: ({ key: string, value: any }[]) = [
 	{ key: 'PRONOUNS', value: sona.pronouns },
 	{ key: 'SPECIES', value: sona.species },
 ].filter(item => item.value !== null && item.value !== undefined);
+
+const HEX_COLOR_REGEX = /^#?[a-f0-9]{3,8}$/i;
+const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 </script>
 
 <template>
@@ -37,6 +41,36 @@ const metaItems: ({ key: string, value: any }[]) = [
 			</ul>
 
 			<p>{{ sona.description }}</p>
+
+			<ul
+				v-if="sona.gallery && sona.gallery.length > 0"
+				class="oc-card__gallery"
+				aria-label="gallery"
+			>
+				<li
+					v-for="image in sona.gallery"
+					:key="image.image"
+				>
+					<a href="#">
+						<img
+							:src="image.image"
+							:alt="image.imageAlt"
+						/>
+					</a>
+				</li>
+			</ul>
+
+			<ul
+				v-if="colors && colors.length > 0"
+				class="oc-card__colors"
+				aria-label="colors"
+			>
+				<SonaCardColorChip
+					v-for="color in colors"
+					:key="color"
+					:hex-code="color"
+				/>
+			</ul>
 		</main>
 	</article>
 </template>
