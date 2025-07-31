@@ -32,8 +32,8 @@ const route = useRoute();
 		
 		<p>
 			<!-- FC2 Clap tag starts here -->
-			<a href="//clap.fc2.com/post/magpie/" target="_blank" title="Web Clap by FC2">
-				<img src="//clap.fc2.com/images/button/white/magpie?lang=en" alt="Web Clap by FC2" style="border:none;" />
+			<a href="//clap.fc2.com/post/magpie/?url=https%3A%2F%2Fsona.ovh&title=sona.ovh" target="_blank" title="Web Clap by FC2">
+				<img src="//clap.fc2.com/images/button/white/magpie?url=https%3A%2F%2Fsona.ovh&amp;lang=en" alt="Web Clap by FC2" style="border:none;" />
 			</a>
 			<!-- FC2 Clap tag ends here -->
 		</p>
