@@ -1,0 +1,121 @@
+<script setup lang="ts">
+import type { Sona } from '@/interfaces/FursonaSchema';
+
+const props = defineProps<{
+	sona: Sona;
+}>();
+
+const sona = props.sona;
+
+const metaItems: ({ key: string, value: any }[]) = [
+	{ key: 'AGE', value: sona.age },
+	{ key: 'GENDER', value: sona.gender },
+	{ key: 'PRONOUNS', value: sona.pronouns },
+	{ key: 'SPECIES', value: sona.species },
+].filter(item => item.value !== null && item.value !== undefined);
+</script>
+
+<template>
+	<article class="oc-card">
+		<aside class="oc-card__avatar">
+			<img
+				:src="sona.avatar || ''"
+				:alt="sona.avatarAlt || ''"
+			/>
+		</aside>
+		<main class="oc-card__info">
+			<h2>{{ sona.name }}</h2>
+
+			<ul class="oc-card__meta">
+				<li
+					v-for="item in metaItems"
+					:key="item.key"
+					:aria-label="item.key"
+				>
+					{{ item.value }}
+				</li>
+			</ul>
+
+			<p>{{ sona.description }}</p>
+		</main>
+	</article>
+</template>
+
+<style lang="scss" scoped>
+.oc-card {
+	width: 100%;
+	margin: 2rem 0;
+	
+	@media screen and (min-width: 600px) {
+		display: grid;
+		grid-template-columns: 1fr 3fr;
+		gap: 1rem;
+	}
+	
+	&__avatar img {
+		width: 200px;
+		height: auto;
+		margin-bottom: 0.5rem;
+		
+		@media screen and (min-width: 600px) {
+			width: 100%;
+		}
+	}
+  
+	&__info {
+		h2 {
+			margin: 0;
+			font-size: 2rem;
+		}
+	}
+	
+	&__meta {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		
+		li {
+			display: inline-block;
+			color: #666;
+			font-size: 0.9rem;
+			margin-right: 0.25rem;
+			
+			&:not(:first-child)::before {
+				content: '•';
+				margin-right: 0.25rem;
+			}
+		}
+	}
+	
+	&__gallery,
+	&__colors {
+		display: flex;
+		flex-wrap: wrap;
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		
+		li {
+			display: inline-block;
+			margin: 0 0.25rem 0.25rem 0;
+		}
+	}
+	
+	&__gallery li {
+		img {
+			height: 120px;
+			width: 120px;
+			object-fit: cover;
+		}
+	}
+	
+	&__colors li {
+		width: 100px;
+		line-height: 48px;
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 0.8rem;
+	}
+}
+</style>
