@@ -4,6 +4,13 @@
 	--color-bg: #FFF;
 	--color-text: #000;
 	--color-text-light: #666;
+
+	--color-btn-bg: #000;
+	--color-btn-bg-hover: #333;
+	--color-btn-bg-active: #666;
+	--color-btn-text: #FFF;
+
+	--color-input-border: #000;
 }
 
 body {
@@ -27,4 +34,29 @@ a {
 
 img {
 	max-width: 100%;
+}
+
+input[type="text"],
+textarea {
+	border: 2px solid var(--color-input-border);
+	border-radius: 0;
+	background-color: transparent;
+	padding: 4px;
+}
+
+.btn {
+	background-color: var(--color-btn-bg);
+	color: var(--color-btn-text);
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		background-color: var(--color-btn-bg-hover);
+	}
+
+	&:active {
+		background-color: var(--color-btn-bg-active);
+	}
 }
