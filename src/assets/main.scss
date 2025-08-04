@@ -1,6 +1,9 @@
 :root {
 	--page-width: 800px;
 
+	/* code generated on http://www.patternify.com */
+	--stripes: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJnzpz5zwjjgzgmJiaMYAEYB8RmROaABAD4hQ9o0iqJkwAAAABJRU5ErkJggg==');
+
 	--color-bg: #FFF;
 	--color-text: #000;
 	--color-text-light: #666;
@@ -34,6 +37,7 @@ a {
 
 img {
 	max-width: 100%;
+	background-image: var(--stripes);
 }
 
 input[type="text"],
@@ -50,6 +54,11 @@ textarea {
 	border: none;
 	font-weight: bold;
 	cursor: pointer;
+	text-decoration: none;
+	padding: 0.5rem 0.75rem;
+	transition: background-color 0.1s;
+	font-size: .9rem;
+	text-transform: uppercase;
 
 	&:hover,
 	&:focus {

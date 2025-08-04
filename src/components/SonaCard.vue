@@ -136,20 +136,17 @@ const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 	}
 	
 	&__gallery li {
+		$img-size: 120px;
+		width: $img-size;
+		height: $img-size;
+		overflow: hidden;
+
 		img {
-			height: 120px;
-			width: 120px;
+			display: block;
+			width: $img-size;
+			height: $img-size;
 			object-fit: cover;
 		}
-	}
-	
-	&__colors li {
-		width: 100px;
-		line-height: 48px;
-		text-align: center;
-		text-transform: uppercase;
-		font-weight: bold;
-		font-size: 0.8rem;
 	}
 }
 </style>

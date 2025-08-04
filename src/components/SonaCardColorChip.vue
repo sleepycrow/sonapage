@@ -22,6 +22,13 @@ const isDark = Number('0x' + unprefixedHex.substring(0, 1)) < 7; // TODO: Add ch
 
 <style lang="scss" scoped>
 .oc-card__colors__item {
+	width: 100px;
+	line-height: 48px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 0.8rem;
+	
 	&--light {
 		color: #000;
 	}
