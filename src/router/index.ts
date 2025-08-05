@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, isNavigationFailure } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import LookupView from '@/views/LookupView.vue';
 import { useLightboxStore } from '@/stores/lightbox';
@@ -15,9 +15,18 @@ const router = createRouter({
 		{
 			path: '/:host',
 			name: 'lookup',
-			component: LookupView,
+			component: LookupView
 		},
 	],
+});
+
+router.afterEach((to, _from, failure) => {
+	if (isNavigationFailure(failure)) return;
+
+	if (to.name === 'lookup')
+		document.title = `${to.params.host} • ${__APP_INSTANCE_NAME__}`;
+	else
+		document.title = __APP_INSTANCE_NAME__;
 });
 
 router.beforeEach(() => {
