@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { useLightboxStore } from '@/stores/lightbox';
-import { watch, watchEffect } from 'vue';
+import { LIGHTBOX_ID } from '@/utils/constants';
+import { useTemplateRef, watch } from 'vue';
 
 const store = useLightboxStore();
+const closeButtonRef = useTemplateRef('close-button');
 
 watch(() => store.hasImage, (isOpen) => {
 	const bodyClass = 'body--modal-open';
-	if (isOpen)
+	if (isOpen) {
 		document.body.classList.add(bodyClass);
-	else
+		closeButtonRef.value?.focus();
+	} else {
 		document.body.classList.remove(bodyClass);
+	}
 })
 </script>
 
@@ -22,10 +26,19 @@ watch(() => store.hasImage, (isOpen) => {
 			class="modal__overlay"
 			@click="store.clearImage"
 		></div>
-		<div class="modal__content-wrapper">
+		<div
+			:id="LIGHTBOX_ID"
+			class="modal__content-wrapper"
+			role="dialog"
+			aria-live="assertive"
+			:aria-modal="store.hasImage"
+		>
 			<button
+				ref="close-button"
 				class="btn modal__close-btn"
 				@click="store.clearImage"
+				aria-label="Close lightbox view"
+				:aria-controls="LIGHTBOX_ID"
 			>
 				⨯
 			</button>
@@ -137,7 +150,7 @@ $close-btn-offset: 8px;
 		margin: ($close-btn-size + $close-btn-offset) auto 0 auto;
 		padding: 8px;
 
-		@media screen and (min-width: (core.$page-width + $close-btn-size)) {
+		@media screen and (min-width: (core.$page-width + $close-btn-size * 2)) {
 			margin: 0 auto;
 		}
 

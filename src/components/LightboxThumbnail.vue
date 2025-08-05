@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import type { GalleryItem } from '@/interfaces/FursonaSchema';
 import { useLightboxStore } from '@/stores/lightbox';
+import { LIGHTBOX_ID } from '@/utils/constants';
 
 const store = useLightboxStore();
-
 const props = defineProps<{
 	image: GalleryItem;
 }>();
+
+const openImage = () => store.setImage(props.image);
+
+const onKeyDown = (e: KeyboardEvent) => {
+	if (e.key === 'Enter'){
+		openImage();
+		e.preventDefault();
+	}
+}
 </script>
 
 <template>
@@ -15,7 +24,9 @@ const props = defineProps<{
 		role="button"
 		tabindex="0"
 		aria-label="Expand image into lightbox view"
-		@click="() => store.setImage(props.image)"
+		:aria-controls="LIGHTBOX_ID"
+		@click="openImage"
+		@keydown="onKeyDown"
 	>
 		<img
 			:src="props.image.image"

@@ -1,0 +1,1 @@
+export const LIGHTBOX_ID = 'lightbox';
