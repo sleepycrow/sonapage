@@ -19,6 +19,21 @@ const metaItems: ({ key: string, value: any }[]) = [
 
 const HEX_COLOR_REGEX = /^#?[a-f0-9]{3,8}$/i;
 const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
+
+
+const galleryItems: GalleryItem[] = [];
+
+if (sona.ref) {
+	galleryItems.push({
+		image: sona.ref,
+		imageAlt: sona.refAlt,
+		imageAttribution: sona.refAttribution,
+	});
+}
+
+if (sona.gallery) {
+	galleryItems.push(...sona.gallery);
+}
 </script>
 
 <template>
@@ -48,15 +63,15 @@ const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 			<p>{{ sona.description }}</p>
 
 			<ul
-				v-if="sona.gallery && sona.gallery.length > 0"
+				v-if="galleryItems.length > 0"
 				class="oc-card__gallery"
 				aria-label="gallery"
 			>
 				<li
-					v-for="image in sona.gallery"
-					:key="image.image"
+					v-for="item in galleryItems"
+					:key="item.image"
 				>
-					<LightboxThumbnail :image="image" />
+					<LightboxThumbnail :image="item" />
 				</li>
 			</ul>
 
