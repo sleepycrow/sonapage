@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from 'vue-router';
+import Lightbox from './components/Lightbox.vue';
 
 const [ appInstanceName, appRepoUrl, appCommitHash ] = [ __APP_INSTANCE_NAME__, __APP_REPO_URL__, __APP_COMMIT_HASH__ ];
 const route = useRoute();
@@ -22,6 +23,7 @@ const route = useRoute();
 	</header>
 
 	<RouterView />
+	<Lightbox />
 
 	<footer>
 		<p>

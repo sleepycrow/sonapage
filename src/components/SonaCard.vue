@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import type { Sona } from '@/interfaces/FursonaSchema';
+import type { GalleryItem, Sona } from '@/interfaces/FursonaSchema';
 import SonaCardColorChip from './SonaCardColorChip.vue';
+import LightboxThumbnail from './LightboxThumbnail.vue';
 
 const props = defineProps<{
 	sona: Sona;
 }>();
-
 const sona = props.sona;
+
 
 const metaItems: ({ key: string, value: any }[]) = [
 	{ key: 'AGE', value: sona.age },
@@ -15,6 +16,7 @@ const metaItems: ({ key: string, value: any }[]) = [
 	{ key: 'SPECIES', value: sona.species },
 ].filter(item => item.value !== null && item.value !== undefined);
 
+
 const HEX_COLOR_REGEX = /^#?[a-f0-9]{3,8}$/i;
 const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 </script>
@@ -22,9 +24,12 @@ const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 <template>
 	<article class="oc-card">
 		<aside class="oc-card__avatar">
-			<img
-				:src="sona.avatar || ''"
-				:alt="sona.avatarAlt || ''"
+			<LightboxThumbnail
+				:image="{
+					image: sona.avatar || '',
+					imageAlt: sona.avatarAlt,
+					imageAttribution: sona.avatarAttribution,
+				}"
 			/>
 		</aside>
 		<main class="oc-card__info">
@@ -51,12 +56,7 @@ const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 					v-for="image in sona.gallery"
 					:key="image.image"
 				>
-					<a href="#">
-						<img
-							:src="image.image"
-							:alt="image.imageAlt"
-						/>
-					</a>
+					<LightboxThumbnail :image="image" />
 				</li>
 			</ul>
 
@@ -75,7 +75,7 @@ const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 	</article>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .oc-card {
 	width: 100%;
 	margin: 2rem 0;
@@ -146,6 +146,7 @@ const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 			width: $img-size;
 			height: $img-size;
 			object-fit: cover;
+			background-image: var(--stripes);
 		}
 	}
 }

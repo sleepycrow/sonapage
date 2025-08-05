@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import LookupView from '@/views/LookupView.vue';
+import { useLightboxStore } from '@/stores/lightbox';
+import { pinia } from '@/stores';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +18,14 @@ const router = createRouter({
 			component: LookupView,
 		},
 	],
+});
+
+router.beforeEach(() => {
+	const lightbox = useLightboxStore(pinia);
+	if (lightbox.hasImage) {
+		lightbox.clearImage();
+		return false;
+	}
 });
 
 export default router;
