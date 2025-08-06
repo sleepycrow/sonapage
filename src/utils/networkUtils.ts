@@ -9,19 +9,28 @@ export function extractHost(uri: string): string | null {
 		: null;
 }
 
-/**
- * TODO: WRITE A SERVER-SIDE SCRIPT FOR THIS!!
- * Some sites do not allow cross-origin requests for these URLs, a server-side adapter will be needed.
- * Preferably keep this client-side implementation as well, but only for development.
- */
+function getFursonaInfoUrls(host: string): string[] {
+	const proxyUrlPattern: string = __PROXY_URL_PATTERN__;
+	if (proxyUrlPattern) {
+		const proxyUrl = proxyUrlPattern.replace('{host}', host);
+		return [ proxyUrl ];
+	}
+
+	if (import.meta.env.DEV) {
+		console.warn("No proxy URL set, falling back to dev-only client-side fetching! Behavior might not be consistent with prod!");
+		return [
+			`https://${host}/.well-known/fursona`,
+			`https://${host}/.well-known/fursona.json`,
+			`http://${host}/.well-known/fursona`,
+			`http://${host}/.well-known/fursona.json`,
+		];
+	}
+
+	return [];
+}
+
 export async function loadFursonaInfo(host: string): Promise<FursonaSchema> {
-	const urls = [
-		`https://${host}/.well-known/fursona`,
-		`https://${host}/.well-known/fursona.json`,
-		`http://${host}/.well-known/fursona`,
-		`http://${host}/.well-known/fursona.json`,
-	];
-	
+	const urls = getFursonaInfoUrls(host);
 	for (let url of urls) {
 		const resp = await fetch(url);
 		if (resp.ok)
