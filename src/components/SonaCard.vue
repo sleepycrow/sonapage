@@ -12,6 +12,7 @@ const sona = props.sona;
 const metaItems: ({ key: string, value: any }[]) = [
 	{ key: 'AGE', value: sona.age },
 	{ key: 'GENDER', value: sona.gender },
+	{ key: 'SEXUALITY', value: sona.sexuality },
 	{ key: 'PRONOUNS', value: sona.pronouns },
 	{ key: 'SPECIES', value: sona.species },
 ].filter(item => item.value !== null && item.value !== undefined);

@@ -23,6 +23,8 @@ export interface Sona {
 	birthdate?: string;
 	colors?: string[];
 	gallery?: GalleryItem[];
+
+	sexuality?: string; // Not officially in the schema, but used by furrcard.com.
 }
 
 export interface GalleryItem {
