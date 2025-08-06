@@ -5,6 +5,7 @@ import LightboxThumbnail from './LightboxThumbnail.vue';
 
 const props = defineProps<{
 	sona: Sona;
+	disableAvatar?: boolean;
 }>();
 const sona = props.sona;
 
@@ -39,13 +40,17 @@ if (sona.gallery) {
 
 <template>
 	<article
-		class="oc-card"
+		:class="{
+			'oc-card': true,
+			'oc-card--no-avatar': props.disableAvatar,
+		}"
 		:aria-label="sona.name"
 	>
 		<aside class="oc-card__avatar">
 			<LightboxThumbnail
+				v-if="sona.avatar"
 				:image="{
-					image: sona.avatar || '',
+					image: sona.avatar,
 					imageAlt: sona.avatarAlt,
 					imageAttribution: sona.avatarAttribution,
 				}"
@@ -167,6 +172,16 @@ if (sona.gallery) {
 			object-fit: cover;
 			background-image: var(--stripes);
 		}
+	}
+
+	&--no-avatar {
+		@media screen and (min-width: 600px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&--no-avatar &__avatar {
+		display: none;
 	}
 }
 </style>

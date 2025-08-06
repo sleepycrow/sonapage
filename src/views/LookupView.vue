@@ -13,6 +13,7 @@ const errorMessage = ref<string | null>(null);
 const fursonaInfo = ref<FursonaSchema | null>(null);
 
 const fursonas = computed(() => (fursonaInfo.value?.sonas || []));
+const noAvatars = computed(() => (fursonas.value.every(sona => !sona.avatar) || false));
 
 watch(() => route.params.host, (newHost) => {
 	isLoading.value = true;
@@ -52,6 +53,7 @@ watch(() => route.params.host, (newHost) => {
 			v-for="sona in fursonas"
 			:key="sona.name"
 			:sona="sona"
+			:disable-avatar="noAvatars"
 		/>
 
 		<details>
