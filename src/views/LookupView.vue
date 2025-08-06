@@ -18,14 +18,12 @@ watch(() => route.params.host, (newHost) => {
 	errorMessage.value = null;
 	fursonaInfo.value = null;
 
-	const rawHostString = typeof route.params.host === 'string'
-		? route.params.host
-		: route.params.host[0];
+	const rawHostString = typeof newHost === 'string' ? newHost : newHost[0];
 	const host = extractHost(rawHostString);
 
 	if (!host) {
 		isLoading.value = false;
-		errorMessage.value = "Invalid host!"; // TODO: consider adding translations instead of hardcoding these in haha
+		errorMessage.value = "Invalid host!";
 		return;
 	}
 

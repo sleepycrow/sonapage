@@ -26,27 +26,37 @@ function onFormSubmit(e: Event): void {
 			<input
 				type="text"
 				ref="host-input"
+				placeholder="example.com"
+				aria-label="domain name"
 			/>
 
-			<button class="btn">
+			<button
+				class="btn"
+				aria-label="submit"
+			>
 				→
 			</button>
 		</form>
 	</main>
 
-	<aside aria-labelledby="how-does-this-work">
-		<h2 id="how-does-this-work">How does this work?</h2>
+	<aside aria-labelledby="explainer-heading">
+		<h2 id="explainer-heading">How does this work?</h2>
 
 		<p>
-			Lorenz crunchipsum jest imprezum, add some information about how {{ appInstanceName }} works here, haha.
+			Websites can use the <a href="https://github.com/pyrox0/fursona-schema">fursona schema</a>
+			file format to publish information about their associated fursonas in a standardized,
+			computer-readable way. Given the address of a website, <strong>{{ appInstanceName }}</strong>
+			checks if the given site has such information, and &mdash; if yes &mdash; displays it!
 		</p>
+	</aside>
+
+	<aside aria-labelledby="free-space-heading">
+		<h2 id="free-space-heading">Free space!</h2>
 
 		<p>
-			Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-		</p>
-		
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+			Shout out to all the furs on <a href="https://web.libera.chat/##furry">##furry on
+			libera.chat</a> and the <a href="https://www.furnet.org/wiki/index.php/Servers">FurNet</a>
+			IRC network! ;3
 		</p>
 	</aside>
 </template>

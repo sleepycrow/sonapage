@@ -10,11 +10,11 @@ const sona = props.sona;
 
 
 const metaItems: ({ key: string, value: any }[]) = [
-	{ key: 'AGE', value: sona.age },
-	{ key: 'GENDER', value: sona.gender },
-	{ key: 'SEXUALITY', value: sona.sexuality },
-	{ key: 'PRONOUNS', value: sona.pronouns },
-	{ key: 'SPECIES', value: sona.species },
+	{ key: 'age', value: sona.age },
+	{ key: 'gender', value: sona.gender },
+	{ key: 'sexuality', value: sona.sexuality },
+	{ key: 'pronouns', value: sona.pronouns },
+	{ key: 'species', value: sona.species },
 ].filter(item => item.value !== null && item.value !== undefined);
 
 
@@ -38,7 +38,10 @@ if (sona.gallery) {
 </script>
 
 <template>
-	<article class="oc-card">
+	<article
+		class="oc-card"
+		:aria-label="sona.name"
+	>
 		<aside class="oc-card__avatar">
 			<LightboxThumbnail
 				:image="{
@@ -66,7 +69,7 @@ if (sona.gallery) {
 			<ul
 				v-if="galleryItems.length > 0"
 				class="oc-card__gallery"
-				aria-label="gallery"
+				aria-label="image gallery"
 			>
 				<li
 					v-for="item in galleryItems"
