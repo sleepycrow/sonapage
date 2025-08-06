@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SonaCard from '@/components/SonaCard.vue';
+import BigMsg from '@/components/BigMsg.vue';
 import type { FursonaSchema } from '@/interfaces/FursonaSchema';
 import { extractHost, loadFursonaInfo } from '@/utils/networkUtils';
 import { computed, ref, watch } from 'vue';
@@ -35,8 +36,17 @@ watch(() => route.params.host, (newHost) => {
 </script>
 
 <template>
-	<p v-if="isLoading">Loading...</p>
-	<p v-else-if="errorMessage">Error: {{ errorMessage }}</p>
+	<BigMsg
+		v-if="isLoading"
+		icon="⏳️"
+		header="Loading..."
+	/>
+	<BigMsg
+		v-else-if="errorMessage"
+		icon="🛑"
+		header="Error"
+		:body="errorMessage"
+	/>
 	<template v-else-if="fursonaInfo">
 		<SonaCard
 			v-for="sona in fursonas"
