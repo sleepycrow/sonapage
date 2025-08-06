@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { isHexColorDark } from '@/utils/uiUtils';
+
 const props = defineProps<{
 	hexCode: string;
 }>();
 
 const unprefixedHex = props.hexCode.replace('#', '');
-const isDark = Number('0x' + unprefixedHex.substring(0, 1)) < 7; // TODO: Add check for transparency
+const isDark = isHexColorDark(unprefixedHex);
 </script>
 
 <template>
