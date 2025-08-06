@@ -25,11 +25,9 @@ export default defineConfig({
     },
   },
 	define: {
-		__APP_INSTANCE_NAME__: JSON.stringify("sona.page"),
-		__APP_NAME__: JSON.stringify(process.env.npm_package_name),
-		__APP_REPO_URL__: JSON.stringify('https://github.com/sleepycrow/sonapage'),
-		__APP_VERSION__: JSON.stringify(process.env.npm_package_version),
-		__APP_COMMIT_HASH__: JSON.stringify(getCommitHash()),
-		__PROXY_URL_PATTERN__: JSON.stringify("http://127.0.0.1/proxy.php?host={host}"),
+		__PROJ_NAME__: JSON.stringify(process.env.npm_package_name),
+		__PROJ_REPO_URL__: JSON.stringify('https://github.com/sleepycrow/sonapage'),
+		__PROJ_VERSION__: JSON.stringify(process.env.npm_package_version),
+		__PROJ_COMMIT_HASH__: JSON.stringify(getCommitHash())
 	},
 })

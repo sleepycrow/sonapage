@@ -10,7 +10,7 @@ export function extractHost(uri: string): string | null {
 }
 
 function getFursonaInfoUrls(host: string): string[] {
-	const proxyUrlPattern: string = __PROXY_URL_PATTERN__;
+	const proxyUrlPattern: string = import.meta.env.VITE_PROXY_URL;
 	if (proxyUrlPattern) {
 		const proxyUrl = proxyUrlPattern.replace('{host}', host);
 		return [ proxyUrl ];

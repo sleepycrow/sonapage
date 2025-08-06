@@ -23,10 +23,11 @@ const router = createRouter({
 router.afterEach((to, _from, failure) => {
 	if (isNavigationFailure(failure)) return;
 
+	const appName = import.meta.env.VITE_APP_NAME;
 	if (to.name === 'lookup')
-		document.title = `${to.params.host} • ${__APP_INSTANCE_NAME__}`;
+		document.title = `${to.params.host} • ${appName}`;
 	else
-		document.title = __APP_INSTANCE_NAME__;
+		document.title = appName;
 });
 
 router.beforeEach(() => {

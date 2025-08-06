@@ -2,7 +2,8 @@
 import { RouterLink, RouterView, useRoute } from 'vue-router';
 import Lightbox from './components/Lightbox.vue';
 
-const [ appInstanceName, appRepoUrl, appCommitHash ] = [ __APP_INSTANCE_NAME__, __APP_REPO_URL__, __APP_COMMIT_HASH__ ];
+// @ts-ignore esbuild defines
+const [ appInstanceName, appRepoUrl, appCommitHash ] = [ import.meta.env.VITE_APP_NAME, __PROJ_REPO_URL__, __PROJ_COMMIT_HASH__ ];
 const route = useRoute();
 </script>
 

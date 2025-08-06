@@ -3,7 +3,7 @@ import { extractHost } from '@/utils/networkUtils';
 import { useTemplateRef } from 'vue';
 import { useRouter } from 'vue-router';
 
-const appInstanceName = __APP_INSTANCE_NAME__;
+const appInstanceName = import.meta.env.VITE_APP_NAME;
 const router = useRouter();
 
 const hostInputRef = useTemplateRef('host-input');
