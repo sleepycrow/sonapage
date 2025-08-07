@@ -1,33 +1,24 @@
-# sonapage
+# 🐾 sonapage
 
-This template should help get you started developing with Vue 3 in Vite.
+A small [fursona schema](https://github.com/pyrox0/fursona-schema) viewer! Parses and displays .well-known/fursona files! Wow! :3  
+As of v1.3 of the schema, it supports everything except birthdates.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Local Development
 
 ```sh
+# Serve frontend
 bun install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 bun dev
+
+# Serve backend (in a separate console)
+cd public/api
+php -S 127.0.0.1:8000
 ```
 
-### Type-Check, Compile and Minify for Production
+## Deploying
 
 ```sh
 bun run build
+
+# ...then just copy everything in the dist/ folder to your site (make sure you get the hidden, dot-prefixed files!)
 ```
