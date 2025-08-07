@@ -25,6 +25,9 @@ function die_with_error($err_code, $err_msg) {
 	die($err_msg);
 }
 
+// Set headers
+header('Cache-Control: public, max-age=300, must-revalidate');
+
 // Set CORS header for development
 if (isset($_SERVER['HTTP_ORIGIN']) && preg_match("/^https?:\/\/(?:localhost|127.0.0.1)(?::[0-9]{1,6})$/i", $_SERVER['HTTP_ORIGIN'])) {
 	header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
