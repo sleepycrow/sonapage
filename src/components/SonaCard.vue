@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { GalleryItem, Sona } from '@/interfaces/FursonaSchema';
+import { IMAGE_FORMATS } from '@/utils/constants';
 import SonaCardColorChip from './SonaCardColorChip.vue';
 import LightboxThumbnail from './LightboxThumbnail.vue';
 
@@ -25,7 +26,8 @@ const colors = sona.colors?.filter(color => HEX_COLOR_REGEX.test(color));
 
 const galleryItems: GalleryItem[] = [];
 
-if (sona.ref) {
+const isRefAnImage = IMAGE_FORMATS.includes(sona.ref?.split('.').pop()?.toLowerCase() || '');
+if (sona.ref && isRefAnImage) {
 	galleryItems.push({
 		image: sona.ref,
 		imageAlt: sona.refAlt,
@@ -95,6 +97,16 @@ if (sona.gallery) {
 					:hex-code="color"
 				/>
 			</ul>
+
+			<div class="oc-card__buttons">
+				<a
+					v-if="sona.ref && !isRefAnImage"
+					:href="sona.ref"
+					class="btn"
+				>
+					View ref sheet
+				</a>
+			</div>
 		</main>
 	</article>
 </template>
@@ -172,6 +184,10 @@ if (sona.gallery) {
 			object-fit: cover;
 			background-image: var(--stripes);
 		}
+	}
+
+	&__buttons .btn {
+		margin: 0.5rem 0.25rem 0.5rem 0;
 	}
 
 	&--no-avatar {
