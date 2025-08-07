@@ -34,7 +34,7 @@ function onFormSubmit(e: Event): void {
 				class="btn"
 				aria-label="submit"
 			>
-				→
+				➔
 			</button>
 		</form>
 	</main>
