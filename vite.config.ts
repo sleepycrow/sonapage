@@ -26,7 +26,7 @@ export default defineConfig({
   },
 	define: {
 		__PROJ_NAME__: JSON.stringify(process.env.npm_package_name),
-		__PROJ_REPO_URL__: JSON.stringify('https://github.com/sleepycrow/sonapage'),
+		__PROJ_REPO_URL__: JSON.stringify('https://sr.ht/~sleepycrow/sonapage'),
 		__PROJ_VERSION__: JSON.stringify(process.env.npm_package_version),
 		__PROJ_COMMIT_HASH__: JSON.stringify(getCommitHash())
 	},
